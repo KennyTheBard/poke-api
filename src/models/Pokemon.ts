@@ -1,17 +1,19 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { ZodType, z } from "zod";
 
-interface Ability {
+export interface Ability {
     hidden: boolean;
     slot: number;
     abilityName: string;
 }
 
-interface HeldItem {
+export interface HeldItem {
     itemName: string;
     itemUrl: string;
 }
 
-interface IPokemon extends Document {
+export interface IPokemon {
+    id: number;
     name: string;
     height: number;
     weight: number;
@@ -19,7 +21,32 @@ interface IPokemon extends Document {
     heldItem: HeldItem | null;
 }
 
+export const AbilitySchema: ZodType<Ability> = z.object({
+    hidden: z.boolean(),
+    slot: z.number(),
+    abilityName: z.string(),
+});
+
+export const HeldItemSchema: ZodType<HeldItem> = z.object({
+    itemName: z.string(),
+    itemUrl: z.string(),
+});
+
+export const IPokemonSchema: ZodType<IPokemon> = z.object({
+    id: z.number(),
+    name: z.string(),
+    height: z.number(),
+    weight: z.number(),
+    abilities: z.array(AbilitySchema),
+    heldItem: HeldItemSchema.or(z.null()),
+});
+
 const pokemonSchema = new Schema<IPokemon>({
+    id: {
+        type: Number,
+        required: true,
+        unique: true,
+    },
     name: {
         type: String,
         required: true,
