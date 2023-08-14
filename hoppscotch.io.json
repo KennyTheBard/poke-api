@@ -1,0 +1,112 @@
+{
+    "v": 1,
+    "name": "Pokemon API",
+    "folders": [],
+    "requests": [
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/pokemons",
+            "name": "Create pokemon",
+            "params": [],
+            "headers": [],
+            "method": "POST",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"id\": 10,\n  \"name\": \"Raichu\",\n  \"type\": \"Electric\",\n  \"weight\": 30,\n  \"height\": 15,\n  \"abilities\": [],\n  \"heldItem\": null\n}"
+            }
+        },
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/pokemons/1",
+            "name": "Update Pokemon",
+            "params": [],
+            "headers": [],
+            "method": "PUT",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"weight\": 25\n}"
+            }
+        },
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/pokemons/1",
+            "name": "Delete Pokemon",
+            "params": [],
+            "headers": [],
+            "method": "DELETE",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"weight\": 25\n}"
+            }
+        },
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/pokemons",
+            "name": "Delete All Pokemons",
+            "params": [],
+            "headers": [],
+            "method": "DELETE",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"weight\": 25\n}"
+            }
+        },
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/pokemons/10",
+            "name": "Get Pokemon",
+            "params": [],
+            "headers": [],
+            "method": "GET",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"weight\": 25\n}"
+            }
+        },
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/pokemons",
+            "name": "Get All Pokemons",
+            "params": [],
+            "headers": [],
+            "method": "GET",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"weight\": 25\n}"
+            }
+        },
+        {
+            "v": "1",
+            "endpoint": "http://localhost:3000/populate-database",
+            "name": "Populate Database",
+            "params": [],
+            "headers": [],
+            "method": "POST",
+            "auth": { "authType": "none", "authActive": true },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"weight\": 25\n}"
+            }
+        }
+    ]
+}
