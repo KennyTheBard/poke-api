@@ -19,7 +19,6 @@ export class PokemonService {
                 console.error(request.reason);
                 continue;
             }
-
             const pokemon = request.value.data as PokemonData;
 
             // check if pokemon exists
@@ -27,10 +26,12 @@ export class PokemonService {
                 id: pokemon.id,
             });
             if (existingPokemon !== null) {
+                console.log(`Skipping pokemon #${pokemon.id} (${pokemon.name})`)
                 continue;
             }
 
             await Pokemon.create(this.pokemonDataToModel(pokemon));
+            console.log(`Updated pokemon #${pokemon.id} (${pokemon.name})`)
             newPokemonCount += 1;
         }
 

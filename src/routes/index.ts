@@ -15,11 +15,14 @@ export const createPokemon = async (req: Request, res: Response) => {
 
 export const updatePokemon = async (req: Request, res: Response) => {
     try {
+        console.log(req.params)
         const id: number = IdParamSchema.parse(req.params.id);
-        const updatedPokemonData: IPokemon = IPokemonSchema.parse(req.body);
+        const updatedPokemonData: Partial<IPokemon> = IPokemonSchema.partial().parse(req.body);
 
-        const updatedPokemon = await Pokemon.findByIdAndUpdate(
-            id,
+        const updatedPokemon = await Pokemon.findOneAndUpdate(
+            {
+                id
+            },
             updatedPokemonData,
             { new: true }
         );
@@ -37,7 +40,9 @@ export const deletePokemon = async (req: Request, res: Response) => {
     try {
         const id: number = IdParamSchema.parse(req.params.id);
 
-        const deletedPokemon = await Pokemon.findByIdAndDelete(id);
+        const deletedPokemon = await Pokemon.findOneAndDelete({
+            id
+        });
         if (deletedPokemon) {
             res.json(deletedPokemon);
         } else {
@@ -52,7 +57,9 @@ export const getOnePokemon = async (req: Request, res: Response) => {
     try {
         const id: number = IdParamSchema.parse(req.params.id);
 
-        const foundPokemon = await Pokemon.findById(id);
+        const foundPokemon = await Pokemon.findOne({
+            id
+        });
         if (foundPokemon) {
             res.json(foundPokemon);
         } else {
@@ -87,8 +94,14 @@ export const deleteAllPokemons = async (req: Request, res: Response) => {
 export const populateDatabase = (pokemonService: PokemonService) => async (req: Request, res: Response) => {
     const count = await Pokemon.countDocuments();
     if (count >= 100) {
+        res.json({
+            message: "Database is already populated"
+        })
         return;
     }
 
-    await pokemonService.refreshPokemons();
+    const newPokemons = await pokemonService.refreshPokemons();
+    res.json({
+        newPokemons
+    });
 }

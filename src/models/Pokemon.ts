@@ -32,7 +32,7 @@ export const HeldItemSchema: ZodType<HeldItem> = z.object({
     itemUrl: z.string(),
 });
 
-export const IPokemonSchema: ZodType<IPokemon> = z.object({
+export const IPokemonSchema = z.object({
     id: z.number(),
     name: z.string(),
     height: z.number(),
@@ -81,6 +81,6 @@ const pokemonSchema = new Schema<IPokemon>({
     },
 });
 
-const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);
+const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema, 'pokemons');
 
 export default Pokemon;
